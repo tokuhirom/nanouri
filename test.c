@@ -46,9 +46,9 @@ int main () {
         int ret = parse_uri(uri, strlen(uri), &scheme, &scheme_len, &host, &host_len, &port, &path_query, &path_query_len); \
         ok(ret == 0, "retval"); \
         ok(strncmp(expect_scheme, scheme, scheme_len) == 0, "scheme"); \
-        ok(strlen(expect_scheme) == scheme_len, "scheme"); \
+        ok(strlen(expect_scheme) == scheme_len, "scheme_len"); \
         ok(strncmp(expect_host, host, host_len) == 0, "host"); \
-        ok(strlen(expect_host) == host_len, "host"); \
+        ok(strlen(expect_host) == host_len, "host_len"); \
         ok(port == expect_port, "port"); \
         ok(strncmp(expect_path_query, path_query, path_query_len) == 0, "path_query"); \
         ok(strlen(expect_path_query) == path_query_len, "path_query"); \
@@ -68,7 +68,6 @@ int main () {
     TEST("http://livedoor.com/", "http", "livedoor.com", 0, "/");
     TEST_ERROR("http", -2);
     TEST_ERROR("http:-", -1);
-    TEST_ERROR("http://mixi.jp:<", -1);
 
     done_testing();
 
