@@ -66,6 +66,7 @@ int main () {
     TEST("http://d.hatena.ne.jp:80", "http", "d.hatena.ne.jp", 80, "");
     TEST("http://d.hatena.ne.jp/", "http", "d.hatena.ne.jp", 0, "/");
     TEST("http://livedoor.com/", "http", "livedoor.com", 0, "/");
+    TEST("http://127.0.0.1:9090", "http", "127.0.0.1", 9090, "");
     TEST_ERROR("http", -2);
     TEST_ERROR("http:-", -1);
 
