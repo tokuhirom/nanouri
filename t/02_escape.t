@@ -1,0 +1,1 @@
+exec q{t/02_escape} or die 

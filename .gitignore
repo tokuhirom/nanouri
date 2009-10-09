@@ -1,3 +1,5 @@
 test.dSYM
 test
 test.o
+t/02_escape
+t/01_parse

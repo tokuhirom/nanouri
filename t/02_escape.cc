@@ -26,23 +26,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TAP_H
-#define TAP_H
 
 #include <stdio.h>
+#include <string.h>
+#include "../picouri.h"
+#include <nanotap.h>
+#include <string>
 
-int TEST_COUNT = 0;
-
-static void ok(int x, const char *msg) {
-    printf("%s %d - %s\n", (x ? "ok" : "not ok"), ++TEST_COUNT, msg ? msg : "");
+int main() {
+    std::string src("hello\x01\x02");
+    is(pu_escape_uri(src), std::string("hello%01%02"), "escape");
+    done_testing();
 }
 
-static void diag(const char *msg) {
-    printf("# %s\n", msg ? msg : "");
-}
-
-static void done_testing() {
-    printf("1..%d\n", TEST_COUNT);
-}
-
-#endif /* TAP_H */
