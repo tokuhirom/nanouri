@@ -58,7 +58,7 @@ t/01_parse: t/01_parse.o
 	cc  -o t/01_parse t/01_parse.o  
 
 t/01_parse.o: t/01_parse.c Makefile
-	cc   -I extlib -c -o t/01_parse.o t/01_parse.c
+	cc  -Wall -Wextra -I extlib -c -o t/01_parse.o t/01_parse.c
 
 t/01_parse.o: t/01_parse.c t/../picouri.h
 
@@ -69,7 +69,7 @@ t/02_escape: t/02_escape.o
 	g++  -o t/02_escape t/02_escape.o  
 
 t/02_escape.o: t/02_escape.cc Makefile
-	g++   -I extlib -c -o t/02_escape.o t/02_escape.cc
+	g++  -Wall -Wextra -I extlib -c -o t/02_escape.o t/02_escape.cc
 
 t/02_escape.o: t/02_escape.cc t/../picouri.h
 

@@ -82,7 +82,7 @@ PU_INLINE char pu_hex_char(unsigned int n) {
 static std::string pu_escape_uri(std::string &src) {
     std::string dst;
     dst.reserve(src.size()*3+1);
-    for (int i=0; i<src.size(); i++) {
+    for (unsigned int i=0; i<src.size(); i++) {
         if (pu_isuric((unsigned char)src[i])) {
             dst += '%';
             dst += pu_hex_char((src[i]>>4)&0x0f);
