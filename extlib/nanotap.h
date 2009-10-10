@@ -37,8 +37,8 @@ static void is(T got, T expected, const char *msg) {
         ok(true, msg);
     } else {
         ok(false, msg);
-        std::cout << "  # got      : " << got << std::endl;
-        std::cout << "  # expected : " << expected << std::endl;
+        std::cerr << "  # got      : " << got << std::endl;
+        std::cerr << "  # expected : " << expected << std::endl;
     }
 }
 
