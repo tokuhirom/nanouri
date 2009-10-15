@@ -157,6 +157,64 @@ static int nu_parse_uri(const char* _buf, size_t len, const char** scheme, size_
     return 0;
 }
 
+#ifdef __cplusplus
+#include <string>
+#include <cstdlib>
+
+namespace nanouri {
+    class Uri {
+    private:
+        char * uri_;
+        std::string host_;
+        std::string scheme_;
+        int port_;
+        std::string path_query_;
+    public:
+        Uri() {
+            uri_ = NULL;
+        }
+        /**
+         * @return true if valid url
+         */
+        bool parse(const std::string &src) {
+            return this->parse(src.c_str());
+        }
+        bool parse(const char*src) {
+            if (uri_) { free(uri_); }
+            uri_ = strdup(src);
+            assert(uri_);
+            const char * scheme;
+            size_t scheme_len;
+            const char * _host;
+            size_t host_len;
+            const char *_path_query;
+            int path_query_len;
+            int ret = nu_parse_uri(uri_, strlen(uri_), &scheme, &scheme_len, &_host, &host_len, &port_, &_path_query, &path_query_len);
+            if (ret != 0) {
+                return false; // parse error
+            }
+            host_.assign(_host, host_len);
+            path_query_.assign(_path_query, path_query_len);
+            scheme_.assign(scheme, scheme_len);
+            return true;
+        }
+        ~Uri() {
+            if (uri_) { free(uri_); }
+        }
+        inline std::string host() { return host_; }
+        inline std::string scheme() { return scheme_; }
+        inline int port() { return port_; }
+        inline std::string path_query() { return path_query_; }
+        inline std::string as_string() { return std::string(uri_); }
+        operator bool() const {
+            return this->uri_;
+        }
+    };
+};
+
+#endif
+
+
 #undef NU_INLINE
 #undef EXPECT
 #undef CHECK_EOF

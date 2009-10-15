@@ -1,0 +1,1 @@
+exec q{t/03_class} or die 

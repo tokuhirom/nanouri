@@ -3,3 +3,7 @@ test
 test.o
 t/02_escape
 t/01_parse
+./test
+t/03_class
+t/02_escape
+t/01_parse
