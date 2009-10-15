@@ -32,7 +32,7 @@
 #include <stddef.h>
 #include <assert.h>
 
-static char pu_uric_map[256] = 
+static char nu_uric_map[256] = 
 /*  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f */
 {
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -54,17 +54,17 @@ static char pu_uric_map[256] =
 };
 
 #ifdef __cplusplus
-# define PU_INLINE static inline
+# define NU_INLINE static inline
 #else
-# define PU_INLINE static __inline__
+# define NU_INLINE static __inline__
 #endif
 
-PU_INLINE int pu_isuric(unsigned char c) {
-    return pu_uric_map[c];
+NU_INLINE int nu_isuric(unsigned char c) {
+    return nu_uric_map[c];
 }
 
 /* private method */
-PU_INLINE char pu_hex_char(unsigned int n) {
+NU_INLINE char nu_hex_char(unsigned int n) {
     assert(n < 16);
 
     if (n < 10) {
@@ -79,14 +79,14 @@ PU_INLINE char pu_hex_char(unsigned int n) {
 
 #include <string>
 
-static std::string pu_escape_uri(std::string &src) {
+static std::string nu_escape_uri(std::string &src) {
     std::string dst;
     dst.reserve(src.size()*3+1);
     for (unsigned int i=0; i<src.size(); i++) {
-        if (pu_isuric((unsigned char)src[i])) {
+        if (nu_isuric((unsigned char)src[i])) {
             dst += '%';
-            dst += pu_hex_char((src[i]>>4)&0x0f);
-            dst += pu_hex_char(src[i]&0x0f);
+            dst += nu_hex_char((src[i]>>4)&0x0f);
+            dst += nu_hex_char(src[i]&0x0f);
         } else {
             dst += src[i];
         }
@@ -107,7 +107,7 @@ static std::string pu_escape_uri(std::string &src) {
     return -1;        \
   }
 
-static int pu_parse_uri(const char* _buf, size_t len, const char** scheme, size_t *scheme_len, const char **host, size_t *host_len, int *port, const char **path_query, int*path_query_len) {
+static int nu_parse_uri(const char* _buf, size_t len, const char** scheme, size_t *scheme_len, const char **host, size_t *host_len, int *port, const char **path_query, int*path_query_len) {
     const char * buf = _buf, * buf_end = buf + len;
 
     *scheme = buf;
@@ -157,7 +157,7 @@ static int pu_parse_uri(const char* _buf, size_t len, const char** scheme, size_
     return 0;
 }
 
-#undef PU_INLINE
+#undef NU_INLINE
 #undef EXPECT
 #undef CHECK_EOF
 #endif /* PICOURI_H */
