@@ -30,17 +30,17 @@
 #include <stdio.h>
 #include <string.h>
 #include "../nanouri.h"
-#include <nanotap.h>
+#include <nanotap/nanotap.h>
 #include <string>
 
 int main() {
     std::string src;
 
     src = "hello\x01\x02";
-    is(pu_escape_uri(src), std::string("hello%01%02"), "escape");
+    is(nu_escape_uri(src), std::string("hello%01%02"), "escape");
 
     src = "hi\xff";
-    is(pu_escape_uri(src), std::string("hi%ff"), "escape");
+    is(nu_escape_uri(src), std::string("hi%ff"), "escape");
 
     done_testing();
 }

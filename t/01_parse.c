@@ -29,7 +29,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "../nanouri.h"
-#include <nanotap.h>
+#include <nanotap/nanotap.h>
 
 int main () {
     const char * scheme;
@@ -43,7 +43,7 @@ int main () {
 #define TEST(uri, expect_scheme, expect_host, expect_port, expect_path_query) \
     do { \
         diag(uri); \
-        int ret = pu_parse_uri(uri, strlen(uri), &scheme, &scheme_len, &host, &host_len, &port, &path_query, &path_query_len); \
+        int ret = nu_parse_uri(uri, strlen(uri), &scheme, &scheme_len, &host, &host_len, &port, &path_query, &path_query_len); \
         ok(ret == 0, "retval"); \
         ok(strncmp(expect_scheme, scheme, scheme_len) == 0, "scheme"); \
         ok(strlen(expect_scheme) == scheme_len, "scheme_len"); \
@@ -57,7 +57,7 @@ int main () {
 #define TEST_ERROR(uri, expect_ret) \
     do { \
         diag(uri); \
-        int ret = pu_parse_uri(uri, strlen(uri), &scheme, &scheme_len, &host, &host_len, &port, &path_query, &path_query_len); \
+        int ret = nu_parse_uri(uri, strlen(uri), &scheme, &scheme_len, &host, &host_len, &port, &path_query, &path_query_len); \
         ok(ret == expect_ret, "retval"); \
     } while (0)
 
