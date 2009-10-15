@@ -1,5 +1,5 @@
 RM=rm
-NAME=picouri
+NAME=nanouri
 FIRST_MAKEFILE=Makefile
 NOECHO=@
 TRUE = true
@@ -60,7 +60,7 @@ t/01_parse: t/01_parse.o
 t/01_parse.o: t/01_parse.c Makefile
 	cc  -Wall -Wextra -I extlib -c -o t/01_parse.o t/01_parse.c
 
-t/01_parse.o: t/01_parse.c t/../picouri.h
+t/01_parse.o: t/01_parse.c t/../nanouri.h
 
 t/01_parse.t: t/01_parse
 	$(PERL) -e 'print "exec q{t/01_parse} or die $!"' > t/01_parse.t
@@ -71,7 +71,7 @@ t/02_escape: t/02_escape.o
 t/02_escape.o: t/02_escape.cc Makefile
 	g++  -Wall -Wextra -I extlib -c -o t/02_escape.o t/02_escape.cc
 
-t/02_escape.o: t/02_escape.cc t/../picouri.h
+t/02_escape.o: t/02_escape.cc t/../nanouri.h
 
 t/02_escape.t: t/02_escape
 	$(PERL) -e 'print "exec q{t/02_escape} or die $!"' > t/02_escape.t

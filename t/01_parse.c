@@ -28,7 +28,7 @@
  */
 #include <stdio.h>
 #include <string.h>
-#include "../picouri.h"
+#include "../nanouri.h"
 #include <nanotap.h>
 
 int main () {
