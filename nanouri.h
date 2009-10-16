@@ -170,50 +170,45 @@ NANOURI_DECLARE int nu_parse_uri(const char* _buf, size_t len, const char** sche
 namespace nanouri {
     class Uri {
     private:
-        char * uri_;
+        std::string uri_;
         std::string host_;
         std::string scheme_;
         int port_;
         std::string path_query_;
     public:
-        Uri() {
-            uri_ = NULL;
-        }
+        Uri() { }
+        ~Uri() { }
+
         /**
          * @return true if valid url
          */
-        bool parse(const std::string &src) {
-            return this->parse(src.c_str());
+        inline bool parse(const std::string &src) {
+            return this->parse(src.c_str(), src.size());
         }
-        bool parse(const char*src) {
-            if (uri_) { free(uri_); }
-            uri_ = strdup(src);
-            assert(uri_);
+        bool parse(const char*src, size_t src_len) {
             const char * scheme;
             size_t scheme_len;
             const char * _host;
             size_t host_len;
             const char *_path_query;
             int path_query_len;
-            int ret = nu_parse_uri(uri_, strlen(uri_), &scheme, &scheme_len, &_host, &host_len, &port_, &_path_query, &path_query_len);
+            int ret = nu_parse_uri(src, src_len, &scheme, &scheme_len, &_host, &host_len, &port_, &_path_query, &path_query_len);
             if (ret != 0) {
                 return false; // parse error
             }
+            uri_.assign(src, src_len);
             host_.assign(_host, host_len);
             path_query_.assign(_path_query, path_query_len);
             scheme_.assign(scheme, scheme_len);
             return true;
         }
-        ~Uri() {
-            if (uri_) { free(uri_); }
-        }
         inline std::string host() { return host_; }
         inline std::string scheme() { return scheme_; }
         inline int port() { return port_; }
         inline std::string path_query() { return path_query_; }
-        inline std::string as_string() { return std::string(uri_); }
+        inline std::string as_string() { return uri_; }
         operator bool() const {
-            return this->uri_;
+            return !this->uri_.empty();
         }
     };
 };

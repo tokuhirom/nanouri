@@ -37,7 +37,8 @@ int main() {
     std::string src;
 
     nanouri::Uri uri;
-    uri.parse("http://mixi.jp/hoge.pl");
+    ok(!uri, "not parsed yet");
+    ok(uri.parse("http://mixi.jp/hoge.pl"));
     ok(uri, "parse succeeded");
     is(uri.host(), "mixi.jp");
     is(uri.path_query(), "/hoge.pl");
