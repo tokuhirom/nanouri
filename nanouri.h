@@ -188,17 +188,17 @@ namespace nanouri {
         bool parse(const char*src, size_t src_len) {
             const char * scheme;
             size_t scheme_len;
-            const char * _host;
+            const char * host;
             size_t host_len;
-            const char *_path_query;
+            const char *path_query;
             int path_query_len;
-            int ret = nu_parse_uri(src, src_len, &scheme, &scheme_len, &_host, &host_len, &port_, &_path_query, &path_query_len);
+            int ret = nu_parse_uri(src, src_len, &scheme, &scheme_len, &host, &host_len, &port_, &path_query, &path_query_len);
             if (ret != 0) {
                 return false; // parse error
             }
             uri_.assign(src, src_len);
-            host_.assign(_host, host_len);
-            path_query_.assign(_path_query, path_query_len);
+            host_.assign(host, host_len);
+            path_query_.assign(path_query, path_query_len);
             scheme_.assign(scheme, scheme_len);
             return true;
         }
