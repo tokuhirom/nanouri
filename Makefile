@@ -4,7 +4,7 @@ FIRST_MAKEFILE=Makefile
 NOECHO=@
 TRUE = true
 NOOP = $(TRUE)
-PERL = /usr/local/bin/perl
+PERL = perl
 VERSION = 
 DISTVNAME = $(NAME)-$(VERSION)
 PREOP = $(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"
@@ -52,13 +52,13 @@ install: all
 	
 
 manifest:
-	/usr/local/bin/perl -MExtUtils::Manifest -e 'ExtUtils::Manifest::mkmanifest()'
+	perl -MExtUtils::Manifest -e 'ExtUtils::Manifest::mkmanifest()'
 
 t/01_parse: t/01_parse.o
-	cc  -o t/01_parse t/01_parse.o  
+	env MACOSX_DEPLOYMENT_TARGET=10.3 cc  -o t/01_parse t/01_parse.o  
 
 t/01_parse.o: t/01_parse.c Makefile
-	cc  -Wall -Wextra -I extlib -c -o t/01_parse.o t/01_parse.c
+	/usr/bin/gcc-4.2  -Wall -Wextra -I extlib -c -o t/01_parse.o t/01_parse.c
 
 t/01_parse.o: t/01_parse.c t/../nanouri.h
 

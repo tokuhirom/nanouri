@@ -32,6 +32,12 @@
 #include <stddef.h>
 #include <assert.h>
 
+#ifdef __GNUC__
+#define NANOURI_DECLARE static __attribute__((__used__))
+#else
+#define NANOURI_DECLARE static
+#endif
+
 static char nu_uric_map[256] = 
 /*  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f */
 {
@@ -54,17 +60,17 @@ static char nu_uric_map[256] =
 };
 
 #ifdef __cplusplus
-# define NU_INLINE static inline
+# define NU_INLINE inline
 #else
-# define NU_INLINE static __inline__
+# define NU_INLINE __inline__
 #endif
 
-NU_INLINE int nu_isuric(unsigned char c) {
+NANOURI_DECLARE NU_INLINE int nu_isuric(unsigned char c) {
     return nu_uric_map[c];
 }
 
 /* private method */
-NU_INLINE char nu_hex_char(unsigned int n) {
+NANOURI_DECLARE NU_INLINE char nu_hex_char(unsigned int n) {
     assert(n < 16);
 
     if (n < 10) {
@@ -79,7 +85,7 @@ NU_INLINE char nu_hex_char(unsigned int n) {
 
 #include <string>
 
-static std::string nu_escape_uri(std::string &src) {
+NANOURI_DECLARE static std::string nu_escape_uri(std::string &src) {
     std::string dst;
     dst.reserve(src.size()*3+1);
     for (unsigned int i=0; i<src.size(); i++) {
@@ -107,7 +113,7 @@ static std::string nu_escape_uri(std::string &src) {
     return -1;        \
   }
 
-static int nu_parse_uri(const char* _buf, size_t len, const char** scheme, size_t *scheme_len, const char **host, size_t *host_len, int *port, const char **path_query, int*path_query_len) {
+NANOURI_DECLARE int nu_parse_uri(const char* _buf, size_t len, const char** scheme, size_t *scheme_len, const char **host, size_t *host_len, int *port, const char **path_query, int*path_query_len) {
     const char * buf = _buf, * buf_end = buf + len;
 
     *scheme = buf;
@@ -215,6 +221,7 @@ namespace nanouri {
 #endif
 
 
+#undef NANOURI_DECLARE
 #undef NU_INLINE
 #undef EXPECT
 #undef CHECK_EOF
