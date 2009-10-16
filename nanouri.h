@@ -85,7 +85,7 @@ NANOURI_DECLARE NU_INLINE char nu_hex_char(unsigned int n) {
 
 #include <string>
 
-NANOURI_DECLARE static std::string nu_escape_uri(std::string &src) {
+NANOURI_DECLARE std::string nu_escape_uri(std::string &src) {
     std::string dst;
     dst.reserve(src.size()*3+1);
     for (unsigned int i=0; i<src.size(); i++) {
