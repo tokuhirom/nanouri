@@ -818,13 +818,13 @@ clean ::
 	$(RM_F) t/01_parse
 
 t/01_parse: t/01_parse.o
-	cc  -o t/01_parse t/01_parse.o -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib 
+	cc  -o t/01_parse t/01_parse.o -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib 
 
 clean ::
 	$(RM_F) t/01_parse.o
 
 t/01_parse.o: t/01_parse.c Makefile
-	cc  -Wall -Wextra -I extlib -I inc/auto/Clib/include/ -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/01_parse.o t/01_parse.c
+	cc  -Wall -Wextra -I extlib -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/01_parse.o t/01_parse.c
 
 t/01_parse.o: t/01_parse.c t/../nanouri.h
 
@@ -841,13 +841,13 @@ clean ::
 	$(RM_F) t/02_escape
 
 t/02_escape: t/02_escape.o
-	g++  -o t/02_escape t/02_escape.o -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib 
+	g++  -o t/02_escape t/02_escape.o -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib 
 
 clean ::
 	$(RM_F) t/02_escape.o
 
 t/02_escape.o: t/02_escape.cc Makefile
-	g++  -Wall -Wextra -I extlib -I inc/auto/Clib/include/ -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/02_escape.o t/02_escape.cc
+	g++  -Wall -Wextra -I extlib -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/02_escape.o t/02_escape.cc
 
 t/02_escape.o: t/02_escape.cc t/../nanouri.h
 
@@ -864,13 +864,13 @@ clean ::
 	$(RM_F) t/03_class
 
 t/03_class: t/03_class.o
-	g++  -o t/03_class t/03_class.o -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib 
+	g++  -o t/03_class t/03_class.o -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib 
 
 clean ::
 	$(RM_F) t/03_class.o
 
 t/03_class.o: t/03_class.cc Makefile
-	g++  -Wall -Wextra -I extlib -I inc/auto/Clib/include/ -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/03_class.o t/03_class.cc
+	g++  -Wall -Wextra -I extlib -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/03_class.o t/03_class.cc
 
 t/03_class.o: t/03_class.cc t/../nanouri.h
 
