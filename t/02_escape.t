@@ -1,1 +1,1 @@
-exec q{t/02_escape} or die 
+exec q!t/02_escape! or die 

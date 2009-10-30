@@ -1,1 +1,1 @@
-exec q{t/03_class} or die 
+exec q!t/03_class! or die 
