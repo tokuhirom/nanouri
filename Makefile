@@ -824,7 +824,7 @@ clean ::
 	$(RM_F) t/01_parse.o
 
 t/01_parse.o: t/01_parse.c Makefile
-	cc  -Wall -Wextra -I extlib -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/01_parse.o t/01_parse.c
+	cc $(INC)  -Wall -Wextra -I extlib -c -o t/01_parse.o t/01_parse.c
 
 t/01_parse.o: t/01_parse.c t/../nanouri.h
 
@@ -847,7 +847,7 @@ clean ::
 	$(RM_F) t/02_escape.o
 
 t/02_escape.o: t/02_escape.cc Makefile
-	g++  -Wall -Wextra -I extlib -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/02_escape.o t/02_escape.cc
+	g++ $(INC)  -Wall -Wextra -I extlib -c -o t/02_escape.o t/02_escape.cc
 
 t/02_escape.o: t/02_escape.cc t/../nanouri.h
 
@@ -870,7 +870,7 @@ clean ::
 	$(RM_F) t/03_class.o
 
 t/03_class.o: t/03_class.cc Makefile
-	g++  -Wall -Wextra -I extlib -I $(INST_ARCHLIB)/auto/Clib/include/ -I /home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/include -c -o t/03_class.o t/03_class.cc
+	g++ $(INC)  -Wall -Wextra -I extlib -c -o t/03_class.o t/03_class.cc
 
 t/03_class.o: t/03_class.cc t/../nanouri.h
 
@@ -878,5 +878,28 @@ t/03_class.t: t/03_class
 	$(ABSPERLRUN) -I$(INST_LIB) -e "print qq[exec q!t/03_class! or die $!]" > t/03_class.t
 
 pure_all :: t/03_class.t
+	$(NOECHO) $(NOOP)
+
+config :: t/04_unescape
+	$(NOECHO) $(NOOP)
+
+clean ::
+	$(RM_F) t/04_unescape
+
+t/04_unescape: t/04_unescape.o
+	g++  -o t/04_unescape t/04_unescape.o -L/home/tokuhirom/share/cpan/lib/perl5/i686-linux/auto/Clib/lib 
+
+clean ::
+	$(RM_F) t/04_unescape.o
+
+t/04_unescape.o: t/04_unescape.cc Makefile
+	g++ $(INC)  -Wall -Wextra -I extlib -c -o t/04_unescape.o t/04_unescape.cc
+
+t/04_unescape.o: t/04_unescape.cc t/../nanouri.h
+
+t/04_unescape.t: t/04_unescape
+	$(ABSPERLRUN) -I$(INST_LIB) -e "print qq[exec q!t/04_unescape! or die $!]" > t/04_unescape.t
+
+pure_all :: t/04_unescape.t
 	$(NOECHO) $(NOOP)
 

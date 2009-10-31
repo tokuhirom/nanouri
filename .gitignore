@@ -8,3 +8,4 @@ t/03_class
 t/02_escape
 t/01_parse
 *.o
+t/04_unescape

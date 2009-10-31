@@ -85,7 +85,7 @@ NANOURI_DECLARE NU_INLINE char nu_hex_char(unsigned int n) {
 
 #include <string>
 
-NANOURI_DECLARE std::string nu_escape_uri(std::string &src) {
+NANOURI_DECLARE std::string nu_escape_uri(const std::string &src) {
     std::string dst;
     dst.reserve(src.size()*3+1);
     for (unsigned int i=0; i<src.size(); i++) {
@@ -93,6 +93,32 @@ NANOURI_DECLARE std::string nu_escape_uri(std::string &src) {
             dst += '%';
             dst += nu_hex_char((src[i]>>4)&0x0f);
             dst += nu_hex_char(src[i]&0x0f);
+        } else {
+            dst += src[i];
+        }
+    }
+    return dst;
+}
+
+static int nu_unhex( unsigned char c ) {
+    return   ( c >= '0' && c <= '9' ) ? c - '0'
+           : ( c >= 'A' && c <= 'F' ) ? c - 'A' + 10
+                                      : c - 'a' + 10;
+}
+
+NANOURI_DECLARE std::string nu_unescape_uri(const std::string &src) {
+    std::string dst;
+    dst.reserve(src.size()*3+1);
+    for (unsigned int i=0; i<src.size(); i++) {
+        if (src[i] == '%') {
+            unsigned char c;
+            if (src[++i] != '\0') {
+                c = nu_unhex(src[i]) << 4;
+            }
+            if (src[++i] != '\0') {
+                c += nu_unhex(src[i]);
+            }
+            dst += c;
         } else {
             dst += src[i];
         }
