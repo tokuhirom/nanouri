@@ -11,3 +11,6 @@ t/01_parse
 t/04_unescape
 Makefile
 inc/
+*.swp
+*.swo
+MANIFEST
