@@ -5,7 +5,7 @@ license 'perl';
 
 clib_setup;
 
-my $e = env_for_c(CPPPATH => 'extlib');
+my $e = env_for_c();
 $e->enable_warnings;
 $e->test('t/01_parse', 't/01_parse.c');
 $e->test('t/02_escape', 't/02_escape.cc');
