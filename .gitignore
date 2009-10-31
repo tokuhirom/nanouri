@@ -9,3 +9,5 @@ t/02_escape
 t/01_parse
 *.o
 t/04_unescape
+Makefile
+inc/
