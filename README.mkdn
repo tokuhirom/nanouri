@@ -9,20 +9,17 @@ This is a tiny uri implementation for C++.
 FUNCTIONS
 ---------
 
-std::string nu_escape_uri(const std::string &src);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### std::string nu_escape_uri(const std::string &src);
 
 Replaces each unsafe character in the src with the
 corresponding escape sequence and returns the result.
 
-std::string nu_unescape_uri(const std::string &src);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### std::string nu_unescape_uri(const std::string &src);
 
 Returns a string with each %XX sequence replaced with the actual
 byte (octet).
 
-int nu_parse_uri(const char* _buf, size_t len, const char** scheme, size_t *scheme_len, const char **host, size_t *host_len, int *port, const char **path_query, int*path_query_len);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### int nu_parse_uri(const char* _buf, size_t len, const char** scheme, size_t *scheme_len, const char **host, size_t *host_len, int *port, const char **path_query, int*path_query_len);
 
 Parses URI string to each part.
 
