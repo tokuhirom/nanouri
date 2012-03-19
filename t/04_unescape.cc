@@ -30,7 +30,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "../nanouri.h"
-#include <nanotap/nanotap.h>
+#include "nanotap.h"
 #include <string>
 
 int main() {

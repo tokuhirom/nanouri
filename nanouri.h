@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, tokuhiro matsuno
+ * Copyright (c) 2009, 2011, tokuhiro matsuno
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,8 +26,8 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef PICOURI_H
-#define PICOURI_H
+#ifndef NANOURI_H
+#define NANOURI_H
 
 #include <stddef.h>
 #include <assert.h>
@@ -246,4 +246,4 @@ namespace nanouri {
 #undef NU_INLINE
 #undef EXPECT
 #undef CHECK_EOF
-#endif /* PICOURI_H */
+#endif /* NANOURI_H */
