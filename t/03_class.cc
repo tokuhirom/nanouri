@@ -29,7 +29,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "../nanouri.h"
+#include "../nanouri.hpp"
 #include "nanotap.h"
 #include <string>
 

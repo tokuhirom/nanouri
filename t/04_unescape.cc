@@ -29,15 +29,15 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "../nanouri.h"
+#include "../nanouri.hpp"
 #include "nanotap.h"
 #include <string>
 
 int main() {
-    is_binary(nu_unescape_uri(std::string("hello%01%02")), std::string("hello\x01\x02"), "escape");
-    is(nu_unescape_uri(std::string("hello%01%02")), std::string("hello\x01\x02"), "escape");
+    is_binary(nanouri::unescape_uri(std::string("hello%01%02")), std::string("hello\x01\x02"), "escape");
+    is(nanouri::unescape_uri(std::string("hello%01%02")), std::string("hello\x01\x02"), "escape");
 
-    is_binary(nu_unescape_uri(std::string("hi%ff")), std::string("hi\xff"), "escape");
+    is_binary(nanouri::unescape_uri(std::string("hi%ff")), std::string("hi\xff"), "escape");
 
     done_testing();
 }

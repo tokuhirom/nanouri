@@ -29,7 +29,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "../nanouri.h"
+#include "../nanouri.hpp"
 #include "nanotap.h"
 #include <string>
 
@@ -37,10 +37,10 @@ int main() {
     std::string src;
 
     src = "hello\x01\x02";
-    is(nu_escape_uri(src), std::string("hello%01%02"), "escape");
+    is(nanouri::escape_uri(src), std::string("hello%01%02"), "escape");
 
     src = "hi\xff";
-    is(nu_escape_uri(src), std::string("hi%ff"), "escape");
+    is(nanouri::escape_uri(src), std::string("hi%ff"), "escape");
 
     done_testing();
 }

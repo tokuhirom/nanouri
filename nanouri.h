@@ -80,54 +80,6 @@ NANOURI_DECLARE NU_INLINE char nu_hex_char(unsigned int n) {
     }
 }
 
-
-#ifdef __cplusplus
-
-#include <string>
-
-NANOURI_DECLARE std::string nu_escape_uri(const std::string &src) {
-    std::string dst;
-    dst.reserve(src.size()*3+1);
-    for (unsigned int i=0; i<src.size(); i++) {
-        if (nu_isuric((unsigned char)src[i])) {
-            dst += '%';
-            dst += nu_hex_char((src[i]>>4)&0x0f);
-            dst += nu_hex_char(src[i]&0x0f);
-        } else {
-            dst += src[i];
-        }
-    }
-    return dst;
-}
-
-static int nu_unhex( unsigned char c ) {
-    return   ( c >= '0' && c <= '9' ) ? c - '0'
-           : ( c >= 'A' && c <= 'F' ) ? c - 'A' + 10
-                                      : c - 'a' + 10;
-}
-
-NANOURI_DECLARE std::string nu_unescape_uri(const std::string &src) {
-    std::string dst;
-    dst.reserve(src.size()*3+1);
-    for (unsigned int i=0; i<src.size(); i++) {
-        if (src[i] == '%') {
-            unsigned char c;
-            if (src[++i] != '\0') {
-                c = nu_unhex(src[i]) << 4;
-            }
-            if (src[++i] != '\0') {
-                c += nu_unhex(src[i]);
-            }
-            dst += c;
-        } else {
-            dst += src[i];
-        }
-    }
-    return dst;
-}
-
-#endif
-
 #define CHECK_EOF() \
   if (buf == buf_end) { \
     return -2;      \
@@ -189,61 +141,10 @@ NANOURI_DECLARE int nu_parse_uri(const char* _buf, size_t len, const char** sche
     return 0;
 }
 
-#ifdef __cplusplus
-#include <string>
-#include <cstdlib>
-
-namespace nanouri {
-    class Uri {
-    private:
-        std::string uri_;
-        std::string host_;
-        std::string scheme_;
-        int port_;
-        std::string path_query_;
-    public:
-        Uri() { }
-        ~Uri() { }
-
-        /**
-         * @return true if valid url
-         */
-        inline bool parse(const std::string &src) {
-            return this->parse(src.c_str(), src.size());
-        }
-        bool parse(const char*src, size_t src_len) {
-            const char * scheme;
-            size_t scheme_len;
-            const char * host;
-            size_t host_len;
-            const char *path_query;
-            int path_query_len;
-            int ret = nu_parse_uri(src, src_len, &scheme, &scheme_len, &host, &host_len, &port_, &path_query, &path_query_len);
-            if (ret != 0) {
-                return false; // parse error
-            }
-            uri_.assign(src, src_len);
-            host_.assign(host, host_len);
-            path_query_.assign(path_query, path_query_len);
-            scheme_.assign(scheme, scheme_len);
-            return true;
-        }
-        inline std::string host() { return host_; }
-        inline std::string scheme() { return scheme_; }
-        inline int port() { return port_; }
-        inline std::string path_query() { return path_query_; }
-        inline std::string as_string() { return uri_; }
-        operator bool() const {
-            return !this->uri_.empty();
-        }
-    };
-};
-
-#endif
-
 
 #undef NANOURI_DECLARE
 #undef NU_INLINE
 #undef EXPECT
 #undef CHECK_EOF
+
 #endif /* NANOURI_H */
