@@ -59,10 +59,10 @@ static char nu_uric_map[256] =
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
-#ifdef __cplusplus
+#if __STDC_VERSION__ >= 199901L
 # define NU_INLINE inline
 #else
-# define NU_INLINE __inline__
+# define NU_INLINE /* nothing */
 #endif
 
 NANOURI_DECLARE NU_INLINE int nu_isuric(unsigned char c) {
