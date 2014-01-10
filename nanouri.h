@@ -33,6 +33,8 @@
 
 int nanouri_isuric(unsigned char c);
 char nanouri_hex_char(unsigned int n);
-int nanouri_parse_uri(const char* _buf, size_t len, const char** scheme, size_t *scheme_len, const char **host, size_t *host_len, int *port, const char **path_query, int*path_query_len);
+int nanouri_parse_uri(const char *_buf, size_t len, const char **scheme,
+                      size_t *scheme_len, const char **host, size_t *host_len,
+                      int *port, const char **path_query, int *path_query_len);
 
 #endif /* NANOURI_H */
