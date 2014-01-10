@@ -46,10 +46,10 @@ namespace nanouri {
     std::string dst;
     dst.reserve(src.size()*3+1);
     for (unsigned int i=0; i<src.size(); i++) {
-        if (nu_isuric((unsigned char)src[i])) {
+        if (nanouri_isuric((unsigned char)src[i])) {
             dst += '%';
-            dst += nu_hex_char((src[i]>>4)&0x0f);
-            dst += nu_hex_char(src[i]&0x0f);
+            dst += nanouri_hex_char((src[i]>>4)&0x0f);
+            dst += nanouri_hex_char(src[i]&0x0f);
         } else {
             dst += src[i];
         }
@@ -107,7 +107,7 @@ namespace nanouri {
           size_t host_len;
           const char *path_query;
           int path_query_len;
-          int ret = nu_parse_uri(src, src_len, &scheme, &scheme_len, &host, &host_len, &port_, &path_query, &path_query_len);
+          int ret = nanouri_parse_uri(src, src_len, &scheme, &scheme_len, &host, &host_len, &port_, &path_query, &path_query_len);
           if (ret != 0) {
               return false; // parse error
           }
