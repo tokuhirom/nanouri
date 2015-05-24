@@ -1,6 +1,8 @@
 nanouri
 =======
 
+[![Build Status](https://travis-ci.org/tokuhirom/nanouri.svg?branch=master)](https://travis-ci.org/tokuhirom/nanouri)
+
 DESCRIPTION
 -----------
 
